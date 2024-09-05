@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filter_categories', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->index()->comment('Чтоб быстро можно было искать по slug, беря прям из uri (для seo), а не по id');
+            $table->float('price');
+            $table->smallInteger('count');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filter_categories');
+        Schema::dropIfExists('products');
     }
 };
